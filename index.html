@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>ShikiFajrianAPIs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Space Grotesk', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-purple-900 via-black to-indigo-900 text-white overflow-x-hidden relative">
+
+<!-- Main Website -->
+<div id="main-content">
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 w-full z-40 bg-gradient-to-r from-black via-purple-900 to-indigo-900 backdrop-blur bg-opacity-60 text-white">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+      <h1 class="text-xl sm:text-2xl font-bold">ShikiFajrianAPIs</h1>
+      <nav class="hidden md:flex space-x-6 text-sm sm:text-base">
+        <a href="#hero" class="hover:text-purple-400">Home</a>
+        <a href="#api" class="hover:text-purple-400">Docs</a>
+        <a href="#contact" class="hover:text-purple-400">Contact</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="menu-btn" class="focus:outline-none">
+          <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden flex-col space-y-4 px-4 pb-4">
+      <a href="#hero" class="hover:text-purple-400">Home</a>
+      <a href="#api" class="hover:text-purple-400">Docs</a>
+      <a href="#contact" class="hover:text-purple-400">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="pt-28 pb-20 text-center relative">
+    <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-400 bg-clip-text text-transparent">ShikiFajrianAPIs</h2>
+    <p class="text-base sm:text-lg md:text-2xl max-w-xl mx-auto text-gray-300">API modern dan fleksibel untuk pengembang kreatif. Aman. Cepat. Gratis digunakan.</p>
+    <canvas id="particles" class="absolute inset-0"></canvas>
+  </section>
+
+  <!-- API Section -->
+  <section id="api" class="py-16 px-4 sm:px-6 relative z-10">
+    <div class="max-w-2xl mx-auto bg-black bg-opacity-30 backdrop-blur rounded-xl p-6 sm:p-8 text-center shadow-2xl">
+      <h3 class="text-2xl sm:text-3xl font-bold mb-4">Your API Key</h3>
+      <p class="break-all text-purple-300 mb-6 text-sm sm:text-base">sk-0pITWpqKbPbjBYy74CtZhA</p>
+      <button onclick="claimApi()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:scale-110 active:scale-95 transform transition rounded-full px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-white shadow-lg focus:outline-none text-sm sm:text-base">Claim API Key</button>
+      <p id="toast" class="hidden mt-4 text-green-400 font-semibold">API Key Copied!</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="py-16 px-4 sm:px-6 text-center">
+    <div class="max-w-xl mx-auto bg-black bg-opacity-30 backdrop-blur rounded-xl p-6 sm:p-8 shadow-2xl">
+      <h3 class="text-2xl sm:text-3xl font-bold mb-6">Contact Developer</h3>
+      <form class="space-y-4 text-left">
+        <input type="text" placeholder="Your Name" class="w-full p-3 rounded bg-white bg-opacity-10 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        <input type="email" placeholder="Your Email" class="w-full p-3 rounded bg-white bg-opacity-10 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        <textarea placeholder="Your Message" rows="4" class="w-full p-3 rounded bg-white bg-opacity-10 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:scale-105 transform transition rounded-full px-6 py-3 font-bold text-white shadow-lg">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-gray-400 text-sm sm:text-base">© 2025 ShikiFajrianAPIs by Fajrian Dev</footer>
+</div>
+
+<!-- Scripts -->
+<script>
+  // Mobile menu toggle
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
+
+  // Claim API
+  function claimApi() {
+    navigator.clipboard.writeText('sk-0pITWpqKbPbjBYy74CtZhA').then(() => {
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2000);
+    });
+  }
+
+  // Particles
+  const canvas = document.getElementById('particles'), ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const particles = Array.from({length: 50}, () => ({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:Math.random()*2-1, dy:Math.random()*2-1}));
+  function drawParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='rgba(255,255,255,0.3)';
+    particles.forEach(p=>{
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0||p.x>canvas.width) p.dx*=-1; if(p.y<0||p.y>canvas.height) p.dy*=-1;
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+</script>
+</body>
+</html>
